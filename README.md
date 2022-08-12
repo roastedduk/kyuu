@@ -1,38 +1,12 @@
-# create-svelte
+# kyuu
+A web based app to help Maimai communities manage queues easily and efficiently. Kyuu aims to reduce chaos that happened in Maimai communities while queuing by providing a simple and easy to use interface for everyone to see and manage queues.
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+## Licensing
+### Code
+All codes are licensed under the [MIT License](https://github.com/roastedduk/kyuu/blob/master/LICENSE.md). Copyright (c) 2022, RoastedDuck and [contributors](https://github.com/roastedduk/kyuu/graphs/contributors).
 
-## Creating a project
+### Assets
+All assets (images, etc) are licensed under the [CC-BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/).
 
-If you're seeing this, you've probably already done this step. Congrats!
-
-```bash
-# create a new project in the current directory
-npm create svelte@latest
-
-# create a new project in my-app
-npm create svelte@latest my-app
-```
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+## Contributing
+All contributions are welcome! Please open an issue or pull request if you have any questions or suggestions.
