@@ -5,10 +5,10 @@
 	import Header from '$lib/Header.svelte'
 </script>
 
-<header class="h-20 w-full fixed top-0 bg-slate-100">
+<header class="h-14 w-full fixed top-0 bg-slate-100 backdrop-blur-xl bg-opacity-70">
 	<Header/>
 </header>
 
-<section class="max-w-lg mx-auto mt-24">
+<section class="max-w-lg mx-auto mt-20">
 	<slot />
 </section>
