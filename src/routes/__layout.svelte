@@ -4,4 +4,6 @@
 	import '@fontsource/plus-jakarta-sans/700.css'
 </script>
 
-<slot />
+<section>
+	<slot />
+</section>
