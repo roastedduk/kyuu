@@ -1,6 +1,6 @@
 <script lang="ts">
-import PlayerCard from "../lib/PlayerCard.svelte";
-import NextPlayerCard from "../lib/NextPlayerCard.svelte";
+import PlayerCard from "$lib/PlayerCard.svelte";
+import NextPlayerCard from "$lib/NextPlayerCard.svelte";
 
 let playerNames = [
     'ayamg0rengkr1spy',
