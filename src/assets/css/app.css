@@ -31,4 +31,8 @@
     h5 {
         @apply text-lg;
     }
+
+    body {
+        @apply text-slate-700 bg-slate-100 max-w-lg mx-auto;
+    }
 }
