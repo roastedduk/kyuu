@@ -33,6 +33,6 @@
     }
 
     body {
-        @apply text-slate-800 bg-slate-100 max-w-lg mx-auto;
+        @apply text-slate-700 bg-slate-100 max-w-lg mx-auto;
     }
 }
