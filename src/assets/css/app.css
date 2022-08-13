@@ -31,4 +31,8 @@
     h5 {
         @apply text-lg;
     }
+
+    body {
+        @apply text-slate-800 bg-slate-100;
+    }
 }
