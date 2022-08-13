@@ -1,2 +1,15 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<script lang="ts">
+import PlayerCard from "../lib/PlayerCard.svelte";
+
+let playerNames = [
+    'ayamg0rengkr1spy',
+    'Jane Doe',
+]
+</script>
+
+<div class="mx-4">
+    <div class="w-full flex flex-col items-center space-y-6">
+        <h1 class="text-2xl">🎮 Now playing</h1>
+        <PlayerCard playerNames="{playerNames}"/>
+    </div>
+</div>
