@@ -1,11 +1,18 @@
 <script lang="ts">
+let sheet: Element
+let minimized = true
 
+const expandCard = (event: Event) => {
+    minimized = !minimized
+}
 </script>
 
-<div class="bg-white w-full p-4 rounded-t-2xl sheet fixed bottom-0 max-w-lg">
+<div class="bg-white w-full p-4 rounded-t-2xl sheet fixed max-w-lg transition-all ease-in-out duration-500 {minimized ? '-bottom-20' : 'bottom-0'}" bind:this={sheet}>
     <div class="flex flex-col">
         <div class="hover:cursor-grab w-full flex justify-center p-2"><div class="w-16 h-1 bg-gray-400 rounded-full"/></div>
         <div>content</div>
+        <button on:click={expandCard}>Expand</button>
+        <p>askdjaslkdjlkajsdkljalskjdlkjalsjdlkajskld jlkasjdlkjaslkd jklasjdlkajslkdjaklsjdlkaj sldkjaskljdlkajslkdjlakjslkdjslkjdklasjdlkajslkjd</p>
     </div>
 </div>
 
