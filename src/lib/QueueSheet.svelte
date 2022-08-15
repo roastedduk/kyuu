@@ -28,7 +28,7 @@
 	</div>
 </div>
 
-<ModalOverlay hidden={minimized} />
+<ModalOverlay hidden={minimized} on:click={expandCard} />
 
 <style>
 	.sheet {
