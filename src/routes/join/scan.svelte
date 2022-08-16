@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Html5Qrcode } from 'html5-qrcode'
-	import { onMount } from 'svelte'
+	import { onMount, onDestroy } from 'svelte'
 
 	let html5QrCode: Html5Qrcode
 
@@ -37,6 +37,10 @@
 	onMount(() => {
 		html5QrCode = new Html5Qrcode('reader')
 		startScanner()
+	})
+
+	onDestroy(() => {
+		if (html5QrCode) html5QrCode.stop()
 	})
 </script>
 
