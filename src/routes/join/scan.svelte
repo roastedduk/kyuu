@@ -40,4 +40,12 @@
 	})
 </script>
 
-<div id="reader" class="h-full w-full" />
+<div class="w-full h-screen flex flex-col -mt-20">
+	<div class="h-4/5 bg-black flex items-center overflow-hidden relative">
+		<div class="absolute top-28 text-center w-full text-white"><h1 class="text-2xl">Scan your friend's QR code</h1></div>
+		<div id="reader" class="w-full max-h-full" />
+	</div>
+	<div class="flex p-6 h-1/5">
+		<h1 class="text-2xl">Or input username manually</h1>
+	</div>
+</div>
