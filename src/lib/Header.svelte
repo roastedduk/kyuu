@@ -9,6 +9,6 @@
 
 <div class="w-full h-full max-w-lg mx-auto flex justify-between items-center px-4">
     <div class="w-8 h-8 text-3xl opacity-0"><Icon icon={arrowLeft}/></div>
-    <img width="100rem" src={Branding} alt="Kyuu" class="w-28">
+    <a href="/"><img width="100rem" src={Branding} alt="Kyuu" class="w-28"></a>
     <img width="48rem" height="48rem" src={Profile} alt="Profile" class="rounded-full w-10 h-10">
 </div>
