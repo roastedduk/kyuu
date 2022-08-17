@@ -18,7 +18,10 @@
 		await import('hammerjs').then((Hammer) => {
 			if (bottomSheet) {
 				hammer = new Hammer.default(bottomSheet, {
-					recognizers: [[Hammer.Pan, { direction: Hammer.DIRECTION_VERTICAL }]]
+					recognizers: [
+						[Hammer.Pan, { direction: Hammer.DIRECTION_VERTICAL }],
+						[Hammer.Tap]
+					]
 				})
 				hammer.on('panstart panup pandown', (event) => {
 					enableAnimation = false
@@ -34,6 +37,10 @@
 						lastActionType = event.type
 					}
 					// console.log({ type: event.type, velocity: event.velocityY })
+				})
+				hammer.on('tap', () => {
+					enableAnimation = true
+					minimized = !minimized // toggle state
 				})
 			}
 		})
@@ -62,25 +69,27 @@
 	bind:this={bottomSheet}
 	class="fixed z-50 w-full {enableAnimation && 'transition-all duration-500'} {bottomSheetClass}"
 >
-	<BottomSheet showHandle={true} on:overlayClick={minimizeCard} class="pb-16 flex flex-col space-y-6">
-		<div class="flex justify-between w-full">
-			<div>
-				<div class="text-sm">Your position:</div>
-				<div class="text-xl font-bold">4</div>
+	<BottomSheet showHandle={true} on:overlayClick={minimizeCard} class="pb-16">
+		<div class=" flex flex-col space-y-6">
+			<div class="flex justify-between w-full">
+				<div>
+					<div class="text-sm">Your position:</div>
+					<div class="text-xl font-bold">4</div>
+				</div>
+				<div>
+					<div class="text-sm">Est. wait time:</div>
+					<div class="text-xl font-bold">45 mins</div>
+				</div>
 			</div>
 			<div>
-				<div class="text-sm">Est. wait time:</div>
-				<div class="text-xl font-bold">45 mins</div>
+				<div class="text-sm">Players:</div>
+				<ul class="font-bold">
+					<li>RoastedDuck</li>
+					<li>Yehez</li>
+				</ul>
 			</div>
+			<button class="self-center uppercase text-red-500 font-bold text-sm">Stop queuing</button>
 		</div>
-		<div>
-			<div class="text-sm">Players:</div>
-			<ul class="font-bold">
-				<li>RoastedDuck</li>
-				<li>Yehez</li>
-			</ul>
-		</div>
-		<button class="self-center uppercase text-red-500 font-bold">Stop queuing</button>
 	</BottomSheet>
 </div>
 <ModalOverlay show={!minimized} on:click={minimizeCard} />
