@@ -6,6 +6,10 @@
 	import Icon, { addIcon } from '@iconify/svelte/dist/OfflineIcon.svelte'
 	import cameraRotate from '@iconify/icons-tabler/camera-rotate'
 	import BottomSheet from '$lib/BottomSheet.svelte'
+	import ErrorBottomSheetContent from '$lib/ErrorBottomSheetContent.svelte'
+
+	import Squint from '$lib/assets/images/squint.png'
+	import Surprised from '$lib/assets/images/surprised.png'
 
 	addIcon('cameraRotate', cameraRotate)
 
@@ -128,20 +132,33 @@
 
 {#if showBottomSheet}
 	<BottomSheet
-		class="fixed z-50 flex flex-col items-center space-y-4 {bottomSheetClasses}"
+		class="fixed z-50 flex flex-col items-center space-y-4 pb-4 {bottomSheetClasses}"
 		showOverlay={true}
 	>
-		<h1 class="text-2xl">Oops!</h1>
 		{#if errorCode === ErrorCodes.PERMISSION_DENIED}
-			<p>Please grant access to your camera to allow QR scanning.</p>
+			<ErrorBottomSheetContent
+				title="Seriously? No camera?"
+				message="You're not making this easy are you? How can I scan the code then?"
+				buttonText="sorry uwu i'll input manually"
+				image={Squint}
+				on:click={hideBottomSheet}
+			/>
 		{:else if errorCode === ErrorCodes.NO_CAMERA}
-			<p>It seems like you don't have any camera installed.</p>
+			<ErrorBottomSheetContent
+				title="Can't find any camera"
+				message="It seems like you don't have any camera installed."
+				buttonText="Input username manually"
+				image={Squint}
+				on:click={hideBottomSheet}
+			/>
 		{:else}
-			<p>Something went wrong while turning on the camera. Do you have any installed?</p>
+			<ErrorBottomSheetContent
+				title="Something went wrong"
+				message="Can't use the camera. Do you have any installed?"
+				buttonText="Input username manually"
+				image={Surprised}
+				on:click={hideBottomSheet}
+			/>
 		{/if}
-		<button
-			on:click={hideBottomSheet}
-			class="w-full p-2 bg-cyan-500 text-white rounded-full font-bold">Dismiss</button
-		>
 	</BottomSheet>
 {/if}
