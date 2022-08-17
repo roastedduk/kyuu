@@ -10,7 +10,7 @@
 
 	let html5QrCode: Html5Qrcode
 	let cameras: CameraDevice[] = []
-	let selectedCamera: number = 0
+	let selectedCamera: number = -1
 	let isScanning = false
 
 	const qrCodeSuccessCallback = async (decodedText: string) => {
@@ -28,24 +28,19 @@
 		isScanning = false
 	}
 
-	const startScanner = async () => {
-		await html5QrCode
-			.start(
-				cameras[selectedCamera].id,
-				qrScannerConfig,
-				qrCodeSuccessCallback,
-				() => {} // ignore errors
-			)
-			.catch((err) => {
-				// if start failed, handle it.
-				console.error(err)
-			})
+	const startScanner = async (useEnvironmentCamera?: boolean) => {
+		await html5QrCode.start(
+			useEnvironmentCamera ? { facingMode: "environment" } : cameras[selectedCamera].id,
+			qrScannerConfig,
+			qrCodeSuccessCallback,
+			() => {} // ignore errors
+		)
 		isScanning = true
 	}
 
 	const changeCamera = async () => {
 		cameras = await getCameras() // reload cameras
-		if (selectedCamera < cameras.length - 1) selectedCamera++
+		if (selectedCamera !== -1 && selectedCamera < cameras.length - 1) selectedCamera++
 		else selectedCamera = 0
 		stopScanner()
 		startScanner()
