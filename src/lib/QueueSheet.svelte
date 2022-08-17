@@ -19,10 +19,7 @@
 		await import('hammerjs').then((Hammer) => {
 			if (bottomSheet) {
 				hammer = new Hammer.default(bottomSheet, {
-					recognizers: [
-						[Hammer.Pan, { direction: Hammer.DIRECTION_VERTICAL }],
-						[Hammer.Tap]
-					]
+					recognizers: [[Hammer.Pan, { direction: Hammer.DIRECTION_VERTICAL }], [Hammer.Tap]]
 				})
 				hammer.on('panstart panup pandown', (event) => {
 					enableAnimation = false

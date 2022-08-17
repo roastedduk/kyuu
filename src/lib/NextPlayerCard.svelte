@@ -16,6 +16,6 @@
 		</div>
 	</div>
 	<div class="text-xl">
-        <Icon icon={dotsVertical} />
-    </div>
+		<Icon icon={dotsVertical} />
+	</div>
 </div>

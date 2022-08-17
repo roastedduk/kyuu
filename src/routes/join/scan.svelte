@@ -132,9 +132,7 @@
 </div>
 
 {#if showBottomSheet}
-	<BottomSheet
-		class="fixed z-50 flex flex-col items-center space-y-4 pb-8 {bottomSheetClasses}"
-	>
+	<BottomSheet class="fixed z-50 flex flex-col items-center space-y-4 pb-8 {bottomSheetClasses}">
 		{#if errorCode === ErrorCodes.PERMISSION_DENIED}
 			<ErrorBottomSheetContent
 				title="Seriously? No camera?"
