@@ -7,6 +7,7 @@
 	import cameraRotate from '@iconify/icons-tabler/camera-rotate'
 	import BottomSheet from '$lib/BottomSheet.svelte'
 	import ErrorBottomSheetContent from '$lib/ErrorBottomSheetContent.svelte'
+	import ModalOverlay from '$lib/ModalOverlay.svelte'
 
 	import Squint from '$lib/assets/images/squint.png'
 	import Surprised from '$lib/assets/images/surprised.png'
@@ -32,7 +33,7 @@
 	$: {
 		if (showBottomSheet) {
 			setTimeout(() => {
-				bottomSheetClasses = 'bottom-0'
+				bottomSheetClasses = '-bottom-4'
 			}, 50)
 		}
 	}
@@ -132,8 +133,7 @@
 
 {#if showBottomSheet}
 	<BottomSheet
-		class="fixed z-50 flex flex-col items-center space-y-4 pb-4 {bottomSheetClasses}"
-		showOverlay={true}
+		class="fixed z-50 flex flex-col items-center space-y-4 pb-8 {bottomSheetClasses}"
 	>
 		{#if errorCode === ErrorCodes.PERMISSION_DENIED}
 			<ErrorBottomSheetContent
@@ -161,4 +161,5 @@
 			/>
 		{/if}
 	</BottomSheet>
+	<ModalOverlay show={true} on:click={hideBottomSheet} />
 {/if}

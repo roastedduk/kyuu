@@ -1,20 +1,86 @@
 <script lang="ts">
 	import ModalOverlay from './ModalOverlay.svelte'
 	import BottomSheet from './BottomSheet.svelte'
+	import { onMount } from 'svelte'
 
-	let sheet: Element
 	let minimized = true
+	let bottomSheet: HTMLElement
+	let hammer: HammerManager
 
-	const expandCard = (event: Event) => {
-		minimized = !minimized
+	let position = 600
+	let viewportHeight = 0
+	let bottomSheetClass = '-bottom-20'
+
+	let lastActionType = ''
+	let enableAnimation = false
+
+	onMount(async () => {
+		await import('hammerjs').then((Hammer) => {
+			if (bottomSheet) {
+				hammer = new Hammer.default(bottomSheet, {
+					recognizers: [[Hammer.Pan, { direction: Hammer.DIRECTION_VERTICAL }]]
+				})
+				hammer.on('panstart panup pandown', (event) => {
+					enableAnimation = false
+					bottomSheet.style.transform = `translateY(${event.deltaY}px)`
+				})
+				hammer.on('panend panup pandown', (event) => {
+					if (event.type === 'panend') {
+						if (lastActionType === 'panup') expandCard()
+						else minimizeCard()
+						bottomSheet.style.transform = `translateY(0px)`
+						enableAnimation = true
+					} else {
+						lastActionType = event.type
+					}
+					// console.log({ type: event.type, velocity: event.velocityY })
+				})
+			}
+		})
+	})
+
+	const expandCard = () => {
+		minimized = false
+	}
+
+	const minimizeCard = () => {
+		minimized = true
+	}
+
+	$: {
+		if (minimized) {
+			bottomSheetClass = '-bottom-[20%]'
+		} else {
+			bottomSheetClass = '-bottom-4'
+		}
 	}
 </script>
 
-<BottomSheet showHandle={true} showOverlay={!minimized} on:overlayClick={expandCard} class="fixed z-50 {minimized ? '-bottom-20' : 'bottom-0'}">
-	<div>content</div>
-	<button on:click={expandCard}>Expand</button>
-	<p>
-		askdjaslkdjlkajsdkljalskjdlkjalsjdlkajskld jlkasjdlkjaslkd jklasjdlkajslkdjaklsjdlkaj
-		sldkjaskljdlkajslkdjlakjslkdjslkjdklasjdlkajslkjd
-	</p>
-</BottomSheet>
+<svelte:window bind:innerHeight={viewportHeight} />
+
+<div
+	bind:this={bottomSheet}
+	class="fixed z-50 w-full {enableAnimation && 'transition-all duration-500'} {bottomSheetClass}"
+>
+	<BottomSheet showHandle={true} on:overlayClick={minimizeCard} class="pb-16 flex flex-col space-y-6">
+		<div class="flex justify-between w-full">
+			<div>
+				<div class="text-sm">Your position:</div>
+				<div class="text-2xl font-bold">4</div>
+			</div>
+			<div>
+				<div class="text-sm">Est. wait time:</div>
+				<div class="text-2xl font-bold">45 mins</div>
+			</div>
+		</div>
+		<div>
+			<div class="text-sm">Players:</div>
+			<ul class="font-bold">
+				<li>RoastedDuck</li>
+				<li>Yehez</li>
+			</ul>
+		</div>
+		<button class="self-center uppercase text-red-500 font-bold">Stop queuing</button>
+	</BottomSheet>
+</div>
+<ModalOverlay show={!minimized} on:click={minimizeCard} />
