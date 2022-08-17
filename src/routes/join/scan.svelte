@@ -10,7 +10,7 @@
 
 	let html5QrCode: Html5Qrcode
 	let cameras: CameraDevice[] = []
-	let selectedCamera: number = -1
+	let selectedCamera: number = 0
 	let isScanning = false
 
 	const qrCodeSuccessCallback = async (decodedText: string) => {
@@ -40,7 +40,7 @@
 
 	const changeCamera = async () => {
 		cameras = await getCameras() // reload cameras
-		if (selectedCamera !== -1 && selectedCamera < cameras.length - 1) selectedCamera++
+		if (selectedCamera < cameras.length - 1) selectedCamera++
 		else selectedCamera = 0
 		stopScanner()
 		startScanner()
