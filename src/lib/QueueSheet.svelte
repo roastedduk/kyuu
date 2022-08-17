@@ -49,7 +49,7 @@
 
 	$: {
 		if (minimized) {
-			bottomSheetClass = '-bottom-[20%]'
+			bottomSheetClass = '-bottom-[12rem]'
 		} else {
 			bottomSheetClass = '-bottom-4'
 		}
@@ -66,11 +66,11 @@
 		<div class="flex justify-between w-full">
 			<div>
 				<div class="text-sm">Your position:</div>
-				<div class="text-2xl font-bold">4</div>
+				<div class="text-xl font-bold">4</div>
 			</div>
 			<div>
 				<div class="text-sm">Est. wait time:</div>
-				<div class="text-2xl font-bold">45 mins</div>
+				<div class="text-xl font-bold">45 mins</div>
 			</div>
 		</div>
 		<div>
