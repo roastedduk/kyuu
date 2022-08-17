@@ -71,13 +71,16 @@
 		<div class="absolute top-28 text-center w-full z-10 text-white">
 			<h1 class="text-2xl">Scan your friend's QR code</h1>
 		</div>
-		<button
-			on:click={changeCamera}
-			class="absolute bottom-28 flex flex-col items-center w-full z-10 text-white disabled:opacity-30 transition-all"
-			disabled={!isScanning}
-		>
-			<Icon class="text-5xl p-2 bg-white/[.2] rounded-full" icon={cameraRotate} />
-		</button>
+		<div class="flex flex-col w-full items-center bottom-28 absolute z-10">
+			<button
+				on:click={changeCamera}
+				class="text-white disabled:opacity-30 transition-all"
+				disabled={!isScanning}
+			>
+				<Icon class="text-5xl p-2 bg-white/[.2] rounded-full" icon={cameraRotate} />
+			</button>
+		</div>
+
 		<div id="reader" class="w-full max-h-full" />
 	</div>
 	<div class="flex p-6 h-1/5">
