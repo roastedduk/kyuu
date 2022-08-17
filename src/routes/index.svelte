@@ -6,7 +6,7 @@
 	let playerNames = ['ayamg0rengkr1spy', 'Jane Doe']
 </script>
 
-<div class="mx-4">
+<div class="mx-4 mb-48">
 	<div class="w-full flex flex-col items-center space-y-8">
 		<div class="w-full flex flex-col items-center space-y-4">
 			<h1 class="text-2xl">🎮 Now playing</h1>
