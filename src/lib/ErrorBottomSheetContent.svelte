@@ -1,4 +1,5 @@
 <script lang="ts">
+    import Button from './Button.svelte';
 	import { createEventDispatcher } from 'svelte'
 	const dispatch = createEventDispatcher()
 
@@ -17,6 +18,6 @@
 <p>
 	{message}
 </p>
-<button on:click={onButtonClick} class="w-full p-2 bg-cyan-500 text-white rounded-full font-bold"
-	>{buttonText}</button
+<Button on:click={onButtonClick} class="w-full"
+	>{buttonText}</Button
 >

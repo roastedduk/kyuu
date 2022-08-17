@@ -2,12 +2,13 @@
 	import ModalOverlay from './ModalOverlay.svelte'
 	import BottomSheet from './BottomSheet.svelte'
 	import { onMount } from 'svelte'
+	import { createEventDispatcher } from 'svelte'
+	const dispatch = createEventDispatcher()
 
 	let minimized = true
 	let bottomSheet: HTMLElement
 	let hammer: HammerManager
 
-	let position = 600
 	let viewportHeight = 0
 	let bottomSheetClass = '-bottom-20'
 
@@ -57,8 +58,10 @@
 	$: {
 		if (minimized) {
 			bottomSheetClass = '-bottom-[12rem]'
+			dispatch('minimize')
 		} else {
 			bottomSheetClass = '-bottom-4'
+			dispatch('expand')
 		}
 	}
 </script>
