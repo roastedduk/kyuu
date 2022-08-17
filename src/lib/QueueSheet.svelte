@@ -10,7 +10,7 @@
 	}
 </script>
 
-<BottomSheet showHandle={true} showOverlay={!minimized} on:overlayClick={expandCard} class={minimized ? '-bottom-20' : 'bottom-0'}>
+<BottomSheet showHandle={true} showOverlay={!minimized} on:overlayClick={expandCard} class="fixed z-50 {minimized ? '-bottom-20' : 'bottom-0'}">
 	<div>content</div>
 	<button on:click={expandCard}>Expand</button>
 	<p>

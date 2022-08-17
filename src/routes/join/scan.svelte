@@ -5,13 +5,42 @@
 	import { onMount, onDestroy } from 'svelte'
 	import Icon, { addIcon } from '@iconify/svelte/dist/OfflineIcon.svelte'
 	import cameraRotate from '@iconify/icons-tabler/camera-rotate'
+	import BottomSheet from '$lib/BottomSheet.svelte'
 
 	addIcon('cameraRotate', cameraRotate)
+
+	enum ErrorCodes {
+		NO_CAMERA = 1,
+		PERMISSION_DENIED = 2,
+		UNKNOWN = 3
+	}
 
 	let html5QrCode: Html5Qrcode
 	let cameras: CameraDevice[] = []
 	let selectedCamera: number = 0
 	let isScanning = false
+	let errorCode: ErrorCodes;
+	let showBottomSheet = false;
+
+	let bottomSheetClasses = '-bottom-full'
+
+	// animation delay for bottom sheet
+	$: {
+		if (showBottomSheet) {
+			setTimeout(() => {
+				bottomSheetClasses = 'bottom-0'
+			}, 50)
+		}
+	}
+
+	const hideBottomSheet = () => {
+		bottomSheetClasses = '-bottom-full'
+
+		setTimeout(() => {
+				
+		showBottomSheet = false
+			}, 300)
+	}
 
 	const qrCodeSuccessCallback = async (decodedText: string) => {
 		await stopScanner()
@@ -52,8 +81,14 @@
 
 	onMount(async () => {
 		html5QrCode = new Html5Qrcode('reader')
-		cameras = await getCameras()
-		await startScanner()
+		try {
+			cameras = await getCameras()
+			await startScanner(true)
+		} catch (error) {
+			if ((error as string).includes('NotAllowedError')) errorCode = ErrorCodes.PERMISSION_DENIED
+			console.log(error)
+			showBottomSheet = true
+		}
 	})
 
 	onDestroy(() => {
@@ -82,3 +117,17 @@
 		<h1 class="text-2xl">Or input username manually</h1>
 	</div>
 </div>
+
+{#if showBottomSheet}
+	<BottomSheet class="fixed z-50 flex flex-col items-center space-y-4 {bottomSheetClasses}" showOverlay={true}>
+		<h1 class="text-2xl">Oops!</h1>
+		{#if errorCode === ErrorCodes.PERMISSION_DENIED}
+			<p>Please grant access to your camera to allow QR scanning.</p>
+		{:else if errorCode === ErrorCodes.NO_CAMERA}
+			<p>It seems like you don't have any camera installed.</p>
+		{:else}
+			<p>Something went wrong while turning on the camera. Do you have any installed?</p>
+		{/if}
+		<button on:click={hideBottomSheet} class="w-full p-2 bg-cyan-500 text-white rounded-full font-bold">Dismiss</button>
+	</BottomSheet>
+{/if}
