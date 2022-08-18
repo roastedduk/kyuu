@@ -85,11 +85,11 @@
 	}
 
 	const changeCamera = async () => {
+		await stopScanner()
 		cameras = await getCameras() // reload cameras
 		if (selectedCamera < cameras!.length - 1) selectedCamera++
 		else selectedCamera = 0
-		stopScanner()
-		startScanner()
+		await startScanner()
 	}
 
 	const getCameras = () => {
