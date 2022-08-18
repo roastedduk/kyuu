@@ -10,7 +10,7 @@ All codes are licensed under the [MIT License](https://github.com/roastedduk/kyu
 
 ### Assets
 
-All assets (images, etc) are licensed under the [CC-BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/).
+All original assets (images, etc) are licensed under the [CC-BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/).
 
 ## Contributing
 
