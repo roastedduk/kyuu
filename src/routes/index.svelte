@@ -7,7 +7,18 @@
 
 	let playerNames = ['ayamg0rengkr1spy', 'Jane Doe']
 
+	let showQueueSheet = false
 	let queueSheetExpanded = false
+
+    $: calculateJoinButtonPosition = () => {
+        let bottom = 0
+        if (showQueueSheet) {
+            bottom = queueSheetExpanded ? 18 : 7
+        } else {
+            bottom = 2
+        }
+        return `${bottom}rem`
+    }
 
 	const joinQueue = () => {
 		goto('/join/scan')
@@ -40,7 +51,7 @@
 		</div>
 		<div
 			class="fixed z-50 w-full max-w-lg mx-auto flex justify-end transition-all duration-500"
-			style="bottom: {queueSheetExpanded ? '18rem' : '7rem'};"
+			style="bottom: {calculateJoinButtonPosition()};"
 		>
 			<div class="w-full pointer-events-none" />
 			<Button
@@ -51,7 +62,9 @@
 	</div>
 </div>
 
-<QueueSheet
-	on:expand={() => (queueSheetExpanded = true)}
-	on:minimize={() => (queueSheetExpanded = false)}
-/>
+{#if showQueueSheet}
+	<QueueSheet
+		on:expand={() => (queueSheetExpanded = true)}
+		on:minimize={() => (queueSheetExpanded = false)}
+	/>
+{/if}
