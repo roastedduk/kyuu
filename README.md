@@ -1,5 +1,7 @@
 # kyuu
 
+![Vercel](https://vercelbadge.vercel.app/api/roastedduk/kyuu)
+
 A web based app to help Maimai communities manage queues easily and efficiently. Kyuu aims to reduce chaos that happened in Maimai communities while queuing by providing a simple and easy to use interface for everyone to see and manage queues.
 
 ## Current Status
