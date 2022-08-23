@@ -7,7 +7,7 @@
 
 	let playerNames = ['ayamg0rengkr1spy', 'Jane Doe']
 
-	let showQueueSheet = false
+	let showQueueSheet = true
 	let queueSheetExpanded = false
 
     $: calculateJoinButtonPosition = () => {
