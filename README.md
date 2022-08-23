@@ -4,8 +4,8 @@
 
 A web based app to help Maimai communities manage queues easily and efficiently. Kyuu aims to reduce chaos that happened in Maimai communities while queuing by providing a simple and easy to use interface for everyone to see and manage queues.
 
-## Current Status
-Kyuu is currently in preview stage. Everything in this repository aren't meant for end users yet as we are still on the process of building the MVP. Any help would be very appreciated!
+> **Warning**
+> Kyuu is currently in preview stage. Everything in this repository aren't meant for end users yet as we are still on the process of building the MVP. Any help would be very appreciated!
 
 ## Licensing
 
