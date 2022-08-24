@@ -111,10 +111,10 @@
 
 <div class="w-full h-screen flex flex-col -mt-20">
 	<div class="h-4/5 bg-black flex items-center overflow-hidden relative">
-		<div class="absolute top-28 text-center w-full z-10 text-white">
+		<div class="absolute top-[12vh] text-center w-full z-10 text-white">
 			<h1 class="text-2xl">Scan your friend's QR code</h1>
 		</div>
-		<div class="flex flex-col w-full items-center bottom-28 absolute z-10">
+		<div class="flex flex-col w-full items-center bottom-[10vh] absolute z-10">
 			<button
 				on:click={changeCamera}
 				class="text-white disabled:opacity-30 transition-all"
